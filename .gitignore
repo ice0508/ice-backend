@@ -1,0 +1,40 @@
+# ===== Maven =====
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ===== IDE (IntelliJ IDEA) =====
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# ===== 其他 IDE (Eclipse/STS/VS Code) =====
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.vscode/
+
+# ===== 日志文件 =====
+*.log
+*.log.*
+
+# ===== 系统文件 =====
+.DS_Store
+Thumbs.db
+
+# ===== 敏感配置文件 =====
+# 忽略所有带环境标识的配置文件（如 application-dev.yml）
+**/application-*.yml
+# 但保留示例模板文件
+!**/application-example.yml
+
+# ===== 临时文件 =====
+*.tmp
+*.bak
+*.swp
+*~
