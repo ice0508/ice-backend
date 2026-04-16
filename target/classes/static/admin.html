@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 用户列表</title>
+    <!-- Vue 3 CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Element Plus 样式和组件库（可选，让界面好看） -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
+    <script src="https://unpkg.com/element-plus"></script>
+    <style>
+        #app { padding: 20px; }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h2>用户管理</h2>
+    <el-button type="primary" @click="fetchUsers">刷新列表</el-button>
+    <el-table :data="users" style="margin-top: 20px">
+        <el-table-column prop="id" label="ID" width="80"></el-table-column>
+        <el-table-column prop="username" label="用户名"></el-table-column>
+        <el-table-column prop="email" label="邮箱"></el-table-column>
+        <el-table-column prop="phone" label="手机号"></el-table-column>
+        <el-table-column label="操作">
+            <template #default="scope">
+                <el-button size="small" type="danger" @click="deleteUser(scope.row.id)">删除</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+</div>
+
+<script>
+    const { createApp, ref } = Vue;
+    const { ElMessage } = ElementPlus;
+
+    createApp({
+        setup() {
+            const users = ref([]);
+
+            // 获取用户列表
+            const fetchUsers = async () => {
+                try {
+                    const res = await fetch('/users');
+                    const data = await res.json();
+                    if (data.code === 200) {
+                        users.value = data.data;
+                    } else {
+                        ElMessage.error(data.message || '获取失败');
+                    }
+                } catch (e) {
+                    ElMessage.error('请求错误');
+                }
+            };
+
+            // 删除用户
+            const deleteUser = async (id) => {
+                try {
+                    const res = await fetch(`/users/${id}`, { method: 'DELETE' });
+                    const data = await res.json();
+                    if (data.code === 200) {
+                        ElMessage.success('删除成功');
+                        fetchUsers();
+                    } else {
+                        ElMessage.error(data.message || '删除失败');
+                    }
+                } catch (e) {
+                    ElMessage.error('请求错误');
+                }
+            };
+
+            // 初始化加载
+            fetchUsers();
+
+            return { users, fetchUsers, deleteUser };
+        }
+    }).use(ElementPlus).mount('#app');
+</script>
+</body>
+</html>

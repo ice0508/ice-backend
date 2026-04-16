@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: ou
+  datasource:
+    url: jdbc:mysql://localhost:3306/you_database?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: your_password
+
+  task:                         # scheduling配置
+    scheduling:
+      pool:
+        size: 5
+
+server:
+  port: 10011
+  address: "::"                 # 监听 IPv6 所有地址（相当于 0.0.0.0 的 IPv6 版）
+
+  tomcat:
+    threads:
+      max: 200                  # 最大工作线程数
+      min-spare: 10             # 最小空闲线程数
+    max-connections: 10000      # 最大连接数（含等待队列）
+    accept-count: 100           # 当所有线程繁忙时，等待队列最大长度
