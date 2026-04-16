@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2026.04.14: 连接了数据库, 并跑通了使用python添加用户和查询所有用户信息; 使用@EnableScheduling开启异步, @EnableAsync开启多线程
 Problem: 1. mapper中想使用@Mapper注解需要先加入Mybatis启动依赖
          2. 使用Lombok依赖可以用@Data(免写get&set)和@RequiredArgsConstructor(免手写构造器)优化代码
@@ -11,3 +12,6 @@ Problem: 1. mapper中校验唯一性用COUNT, 校验后还需使用该对象用S
          2. status为Boolean类型才能进行 == null 非空性检验
          3. StringUtils.hashText() 字符串(!null & length > 0 & 至少一个非空字符 -> 返回true)
          4. Result标准应为Integer code & String message & Object data
+=======
+
+>>>>>>> c8de644b055b072f2d8bba57a36e5a63fe2be82d
