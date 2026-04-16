@@ -68,6 +68,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--BCrypt加密存储依赖-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
