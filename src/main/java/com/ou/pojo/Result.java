@@ -10,7 +10,6 @@ public class Result {
     private String message;    // 提示信息（成功时为"success"，失败时为具体原因）
     private Object data;       // 携带的数据（可以是对象、数组、null）
 
-    // ========== 全参构造器 ==========
     public Result(Integer code, String message, Object data) {
         this.code = code;
         this.message = message;
@@ -18,7 +17,6 @@ public class Result {
     }
 
     // ========== 静态工厂方法：成功 ==========
-
     /** 成功，无数据 */
     public static Result success() {
         return new Result(200, "success", null);

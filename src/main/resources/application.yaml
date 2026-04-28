@@ -1,1 +1,34 @@
+spring:
+  application:
+    name: ou
+  datasource:
+    url: jdbc:mysql://localhost:3306/rhm1?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:Megumi.09230508}
 
+  task:                         # scheduling配置
+    scheduling:
+      pool:
+        size: 5
+    execution:
+      pool:
+        core-size: 3
+        max-size: 5
+        queue-capacity: 100
+      thread-name-prefix: log-async-
+
+server:
+  port: 10011
+  address: "::"                 # 监听 IPv6 所有地址（相当于 0.0.0.0 的 IPv6 版）
+
+  tomcat:
+    threads:
+      max: 200                  # 最大工作线程数
+      min-spare: 10             # 最小空闲线程数
+    max-connections: 10000      # 最大连接数（含等待队列）
+    accept-count: 100           # 当所有线程繁忙时，等待队列最大长度
+
+# JWT配置
+jwt:
+  secret: "ou-secret-key-for-jwt-token-generation-2024-must-be-at-least-32-bytes"
+  expiration: 86400000          # 24小时（毫秒）

@@ -10,6 +10,12 @@ spring:
     scheduling:
       pool:
         size: 5
+    execution:
+      pool:
+        core-size: 3
+        max-size: 5
+        queue-capacity: 100
+      thread-name-prefix: log-async-
 
 server:
   port: 10011
@@ -21,3 +27,8 @@ server:
       min-spare: 10             # 最小空闲线程数
     max-connections: 10000      # 最大连接数（含等待队列）
     accept-count: 100           # 当所有线程繁忙时，等待队列最大长度
+
+# JWT配置
+jwt:
+  secret: "ou-secret-key-for-jwt-token-generation-2024-must-be-at-least-32-bytes"
+  expiration: 86400000          # 24小时（毫秒）

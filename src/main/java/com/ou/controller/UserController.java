@@ -5,6 +5,7 @@ import com.ou.pojo.Result;
 import com.ou.pojo.UserMessage;
 import com.ou.pojo.enums.UserIdentity;
 import com.ou.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,13 @@ public class UserController {
     @GetMapping
     public Result getAllUserInfo() {
         return userService.getAllUserInfo();
+    }
+
+    // 分页
+    @GetMapping("/page")
+    public Result getUserPage(@RequestParam(defaultValue = "1") int page,
+                              @RequestParam(defaultValue = "10") int size) {
+        return userService.getUserPage(page, size);
     }
 
     // 新增用户
@@ -49,7 +57,7 @@ public class UserController {
 
     // 用户登录
     @PostMapping("/login")
-    public Result userLogin(@RequestBody LoginRequest loginRequest) {
+    public Result userLogin(@Valid @RequestBody LoginRequest loginRequest) {
         return userService.userLogin(loginRequest);
     }
 }
